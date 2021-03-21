@@ -131,7 +131,7 @@ public class CPU {
 
                     case STD: // [A] ← Rs
                             m[ir.p].opc = Opcode.DATA;
-                            m[ir.p].p = reg[ir.r2];
+                            m[ir.p].p = reg[ir.r1];
                             pc++;
                         break;
 
