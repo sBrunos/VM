@@ -27,4 +27,16 @@ public class Programs {
         new Word(Opcode.JMPIG, 6, 7, -1), 
         new Word(Opcode.STOP, -1, -1, -1) };
 
+    public Word[] trapIn = new Word[]{
+            new Word(Opcode.LDI, 7,-1,1), // r[7] = 1 -- INPUT
+            new Word(Opcode.TRAP,7,-1,9), // Aloca numero fornecido pelo usuario no registrador
+            new Word(Opcode.STOP, -1,-1,-1)
+    };
+    public Word[] trapOut = new Word[]{
+            new Word(Opcode.LDI, 7,-1,2), // r[7] = 2 -- OUTPUT
+            new Word(Opcode.LDI, 8,-1,30), // r[8] = 30 -- Adicona numero 30 ao registrador
+            new Word(Opcode.TRAP, 1,-1,8), // Printa o numero 30 presente no registrador
+            new Word(Opcode.STOP, -1,-1,-1)
+    };
+
 }

@@ -2,14 +2,16 @@
 public class CPU {
     private int pc; // ... composto de program counter,
     private Word ir; // instruction register,
-    private int[] reg; // registradores da CPU
+    int[] reg; // registradores da CPU
 
     private Word[] m; // CPU acessa MEMORIA, guarda referencia 'm' a ela. memoria nao muda. ee sempre
                       // a mesma.
 
+    Auxiliar auxObj = new Auxiliar();
+
     public CPU(Word[] _m) { // ref a MEMORIA e interrupt handler passada na criacao da CPU
         m = _m; // usa o atributo 'm' para acessar a memoria.
-        reg = new int[8]; // aloca o espaço dos registradores
+        reg = new int[9]; // aloca o espaço dos registradores
     }
 
     public void setContext(int _pc) { // no futuro esta funcao vai ter que ser
@@ -33,7 +35,9 @@ public class CPU {
                 boolean invalidIntruction = false;
                 boolean outOfBounds = false;
                 boolean overflow = false;
+                boolean interr = false;
 
+                if(interr){break;}
 				// FETCH
 					ir = m[pc]; 	// busca posicao da memoria apontada por pc, guarda em ir
 				// EXECUTA INSTRUCAO NO ir
@@ -184,6 +188,14 @@ public class CPU {
                             reg[ir.r1] = aux;
                             pc++;
                         break;
+
+
+
+                    //////////////////  TRAP   //////////////////
+                    case TRAP:
+                            interr = auxObj.chamadasDeSistema(this);
+                            pc++;
+                            break;
 
                     default : // Instrução inválida 
                             invalidIntruction = true;

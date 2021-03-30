@@ -8,8 +8,10 @@ public class Sistema {
 
 	public static void main(String args[]) {
 		Sistema s = new Sistema();
-		s.test2();
-		s.test1();
+		System.out.println("\n TESTE DE IO : INPUT");// Esperado inteiro como input do usuario para ser armazenado.
+		s.testaTrapIN();
+		System.out.println("\n TESTE DE IO : OUTPUT"); // Esperado o valor 30 como output
+		s.testaTrapOUT();
 	}
 
 	public void test1(){
@@ -35,6 +37,30 @@ public class Sistema {
 		vm.cpu.run();
 		aux.dump(vm.m, 0, 15);
 	}
+
+	public void testaTrapIN(){
+        Auxiliar aux = new Auxiliar();
+        Word[] p = new Programs().trapIn;
+        aux.carga(p, vm.m);
+        vm.cpu.setContext(0);
+        System.out.println("---------------------------------- programa carregado ");
+        aux.dump(vm.m, 0, 10);
+        System.out.println("---------------------------------- após execucao ");
+        vm.cpu.run();
+        aux.dump(vm.m, 0, 10);
+    }
+
+	public void testaTrapOUT(){
+        Auxiliar aux = new Auxiliar();
+        Word[] p = new Programs().trapOut;
+        aux.carga(p, vm.m);
+        vm.cpu.setContext(0);
+        System.out.println("---------------------------------- programa carregado ");
+        aux.dump(vm.m, 0, 10);
+        System.out.println("---------------------------------- após execucao ");
+        vm.cpu.run();
+        aux.dump(vm.m, 0, 10);
+    }
 
 }
 
