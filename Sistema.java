@@ -37,7 +37,7 @@ public class Sistema {
 				case 5: System.out.println("Tchau!");
 			}
 		}
-		while(i != 4);
+		while(i != 5);
 
 	}
 
