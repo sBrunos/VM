@@ -63,7 +63,7 @@ public class CPU {
 
                 
                     case JMPIE: 
-                        if(ir.r2 == 0){
+                        if(reg[ir.r2] == 0){
                             pc = ir.r1;
                         }
                         else{
@@ -79,7 +79,7 @@ public class CPU {
                         break;
 
                     case JMPIGM: 
-                        if(ir.r2 > 0){
+                        if(reg[ir.r2] > 0){
                             outOfBounds = verifyOutOfBounds(ir.p);
                             if(outOfBounds) break;
                             pc = m[ir.p].p;
@@ -87,6 +87,7 @@ public class CPU {
                         else{
                             pc++;
                         }
+
                         break;
                     
                     
@@ -102,7 +103,7 @@ public class CPU {
                         break;
 
                     case JMPIEM:
-                        if(ir.r2 == 0){
+                        if(reg[ir.r2] == 0){
 
                             outOfBounds = verifyOutOfBounds(ir.p);
                             if(outOfBounds) break;
@@ -127,7 +128,7 @@ public class CPU {
                         break;
 
                     case SUBI: // Rd ← Rd - Rs
-                        reg[ir.r1] = reg[ir.r1] - reg[ir.p];
+                        reg[ir.r1] = reg[ir.r1] - ir.p;
                         pc++;
                         break;
 
@@ -169,7 +170,7 @@ public class CPU {
                     case LDX: 
                         outOfBounds = verifyOutOfBounds(ir.r2);
                         if(outOfBounds) break;
-                        reg[ir.r1] = m[ir.r2].p;
+                        reg[ir.r1] = m[reg[ir.r2]].p;
                         pc++;
                         break;
 
@@ -185,7 +186,7 @@ public class CPU {
                     case SWAP: // 
                             int aux = reg[ir.r1];
                             reg[ir.r1] = reg[ir.r2];
-                            reg[ir.r1] = aux;
+                            reg[ir.r2] = aux;
                             pc++;
                         break;
 
