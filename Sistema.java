@@ -32,7 +32,7 @@ public class Sistema {
 						break;
 				case 3: s.fibonacci10();
 						break;
-				case 4: s.fibonacci();
+				case 4: s.bubbleSort();
 						break;
 				case 5: System.out.println("Tchau!");
 			}
