@@ -1,6 +1,7 @@
 # Trabalho de SisOp (S1/2021)
 
 Entrega das Fases 1,2 e 3.
+UTILIZAR A BRANCH DEVELOP.
 
 ## Compilação & Execução
 
